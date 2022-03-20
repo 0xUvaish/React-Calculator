@@ -9,18 +9,28 @@ function App() {
     setResult(result.concat(e.target.name));
   }
 
+  const clear = () => {
+    setResult("");
+  }
+
+  const backspace = () => {
+    setResult(result.slice(0, result.length -1));
+  }
+
+  const calculate = () => {
+    setResult(eval(result).toString());
+  }
+
 
   return (
     <div className="calculator-grid">
       <div className="output">
-        <form className="current-operand">
-          <input type="text" value={result} />
+        <form >
+          <input type="text" className="current-operand" value={result} />
         </form>
-        {/* <div className="previous-operand">123,234*</div> */}
-        {/* <div className="current-operand">123,234</div> */}
       </div>
-      <button onClick={handleClick} id="clear" className="span-two">AC</button>
-      <button onClick={handleClick} id="backspace" >DEL</button>
+      <button onClick={clear} id="clear" className="span-two">AC</button>
+      <button onClick={backspace} id="backspace" >DEL</button>
       <button name="/" onClick={handleClick} >/</button>
       <button name="1" onClick={handleClick} >1</button>
       <button name="2" onClick={handleClick} >2</button>
@@ -36,7 +46,7 @@ function App() {
       <button name="-" onClick={handleClick} >-</button>
       <button name="." onClick={handleClick} >.</button>
       <button name="0" onClick={handleClick} >0</button>
-      <button onClick={handleClick}  className="span-two">=</button>
+      <button onClick={calculate}  className="span-two">=</button>
     </div>
   );
 }
